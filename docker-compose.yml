@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  clarity-b2b2c:
+    container_name: clarity-b2b2c
+    restart: always
+    build: .
+    ports:
+        - '80:80'
+    depends_on:
+      - mysql-db-b2b2c
+    networks:
+      - clarity-b2b2c-net
+  mysql-db-b2b2c:
+    image: 'mysql'
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    container_name: mysql-db-b2b2c
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: clarityB2B2C
+    volumes:
+      - ./database/appDb/init:/docker-entrypoint-initdb.d
+    networks:
+      - clarity-b2b2c-net
+networks:
+  clarity-b2b2c-net:
+    external:
+      name: "clarity-inter-service-network"

@@ -1,0 +1,17 @@
+
+Steps To Install:
+
+1. Configure Database using B2B2C Database.
+
+2. Execute latest execute SQL file.
+
+3. Configure the Passport client, if not configured using bellow commands.
+
+    php artisan passport:install
+    php artisan passport:client --password - This command only for password token generation
+
+Note :  We are using password grant type, se we should use password grant token
+
+4. Portal config Needs to be change engine_url, api_url And Auth Client Related Changes
+
+5. Play with the instrucion mentioned here http://b2c.dev4.tltid.com/otp-b2c-cms/public/apiDoc/apiDoc.txt
